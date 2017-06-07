@@ -16,7 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="100">
+            android:layout_weight="90">
 
         <ImageView
             android:id="@+id/res_image"
@@ -97,7 +97,9 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:weightSum="100"
-            android:layout_weight="20"
+            android:layout_weight="30"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             >
 
             <LinearLayout
@@ -113,13 +115,15 @@
                     android:text="Hotel Silver Line"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    android:id="@+id/place_name"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="104,Old Street,New Delhi"
-                    android:textSize="11sp"/>
+                    android:textSize="11sp"
+                    android:id="@+id/place_add"/>
 
 
             </LinearLayout>
@@ -133,7 +137,8 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
-                android:gravity="right"/>
+                android:gravity="right"
+                android:id="@+id/distance"/>
 
             <ImageView
                 android:layout_width="0dp"

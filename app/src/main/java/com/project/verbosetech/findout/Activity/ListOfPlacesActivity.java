@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.project.verbosetech.findout.Models.Places;
 import com.project.verbosetech.findout.Othes.PlacesRecycleGrid;
@@ -44,7 +45,13 @@ public class ListOfPlacesActivity extends AppCompatActivity {
         placesList.add(new Places("Hotel Silver Line","104, Old Street, New delhi","5.4 km"));
         placesList.add(new Places("Hotel Silver Line","104, Old Street, New delhi","5.4 km"));
         placesList.add(new Places("Hotel Silver Line","104, Old Street, New delhi","5.4 km"));
-        adapter=new PlacesRecycleGrid();
+        adapter=new PlacesRecycleGrid(getApplicationContext(), placesList, new PlacesRecycleGrid.VenueAdapterClickCallbacks() {
+            @Override
+            public void onCardClick(String p) {
+
+                Toast.makeText(getApplicationContext(),"To be Implemented",Toast.LENGTH_LONG).show();
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 }

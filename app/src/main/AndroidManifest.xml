@@ -14,7 +14,7 @@
         android:name=".MyApp">
 
         <activity
-            android:name=".Activity.ViewPagerDemo">
+            android:name=".Activity.ListOfPlacesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
