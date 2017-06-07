@@ -1,4 +1,4 @@
-package com.project.verbosetech.findout;
+package com.project.verbosetech.findout.Othes;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.project.verbosetech.findout.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

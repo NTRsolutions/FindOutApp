@@ -14,7 +14,7 @@
         android:name=".MyApp">
 
         <activity
-            android:name=".ViewPagerDemo">
+            android:name=".Activity.ViewPagerDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -1,4 +1,4 @@
-package com.project.verbosetech.findout;
+package com.project.verbosetech.findout.Othes;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.project.verbosetech.findout.R;
 
 /**
  * Created by this pc on 06-06-17.

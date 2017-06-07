@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.project.verbosetech.findout.R;
-import com.project.verbosetech.findout.SignInActivity;
+import com.project.verbosetech.findout.Activity.SignInActivity;
 
 /**
  * Created by this pc on 06-06-17.

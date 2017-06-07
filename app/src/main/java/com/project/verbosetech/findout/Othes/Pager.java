@@ -1,4 +1,4 @@
-package com.project.verbosetech.findout.Fragments;
+package com.project.verbosetech.findout.Othes;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

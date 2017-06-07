@@ -5,7 +5,7 @@
     android:orientation="vertical"
     >
 
-    <com.project.verbosetech.findout.Fragments.Pager
+    <com.project.verbosetech.findout.Othes.Pager
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/viewpager"

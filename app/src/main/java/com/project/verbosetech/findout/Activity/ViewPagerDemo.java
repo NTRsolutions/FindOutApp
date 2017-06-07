@@ -1,4 +1,4 @@
-package com.project.verbosetech.findout;
+package com.project.verbosetech.findout.Activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.project.verbosetech.findout.Fragments.Pager;
+import com.project.verbosetech.findout.Othes.CustomGridAdapter;
+import com.project.verbosetech.findout.Othes.CustomPagerAdapter;
+import com.project.verbosetech.findout.Othes.Pager;
+import com.project.verbosetech.findout.R;
 
 import java.util.ArrayList;
 
