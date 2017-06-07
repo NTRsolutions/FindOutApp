@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:adjustViewBounds="true"
+        android:src="@drawable/images_restaurant"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share with your\nloved ones &amp; get"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="12dp"
+        android:layout_above="@+id/text2"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50 Rs. Paytm"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="12dp"
+        android:background="@drawable/text_bckgrnd"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:id="@+id/text2"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"/>
+
+</RelativeLayout>
