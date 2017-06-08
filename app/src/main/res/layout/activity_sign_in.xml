@@ -185,7 +185,7 @@
             android:id="@+id/password"
             android:hint="@string/password"
             android:background="@drawable/email_etxt_bkgrnd"
-            android:drawableLeft="@drawable/ic_lock_grey_24dp"
+            android:drawableLeft="@drawable/selector_lock"
             android:layout_marginTop="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
