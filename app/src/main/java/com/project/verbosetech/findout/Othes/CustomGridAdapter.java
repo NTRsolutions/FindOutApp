@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.project.verbosetech.findout.R;
 import com.squareup.picasso.Picasso;
 
@@ -23,6 +25,7 @@ public class CustomGridAdapter extends BaseAdapter {
     private final ArrayList<String> place;
     private final ArrayList<String> number;
     ArrayList<Integer> url;
+    String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
 
     public CustomGridAdapter(Context mContext, ArrayList<String> place, ArrayList<String> number, ArrayList<Integer> url) {
         this.mContext = mContext;
@@ -64,7 +67,14 @@ public class CustomGridAdapter extends BaseAdapter {
             ImageView imageView = (ImageView) grid.findViewById(R.id.image);
             tplace.setText(place.get(position));
             tnumber.setText(number.get(position));
-            imageView.setImageResource(url.get(position));
+
+            Glide.with(mContext).load(image_address)
+                    .dontAnimate()
+                    .centerCrop()
+                    .override(500,500)
+                    .bitmapTransform(new RoundedCornersTransformation(mContext,150,0, RoundedCornersTransformation.CornerType.TOP))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageView);
         }
         else {
 

@@ -2,7 +2,7 @@
     <string name="app_name">Findout</string>
 
     <string name="continue_with">Continue with</string>
-    <string name="or">or</string>
+    <string name="or">Or</string>
     <string name="sign">Sign in Now</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -30,5 +30,44 @@
     <string name="poor">Poor</string>
     <string name="rate">Rate Now</string>
 
+    <string name="sign_up_now">Sign up Now</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone Number</string>
+    <string name="create_pass">Create Password</string>
+    <string name="confirm_pass">Confirm Password</string>
+    <string name="have">Have an account?</string>
+    <string name="sign_in">Sign in</string>
+
+    <string name="emaill">username@gmail.com</string>
+    <string name="user">User name</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home">Home</string>
+    <string name="nav_rated">Rated</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_share">Share now</string>
+    <string name="nav_help">Need help?</string>
+    <string name="nav_sign">Sign out</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Rated</item>
+        <item>Profile</item>
+        <item>Share Now</item>
+        <item>Need help?</item>
+    </string-array>
+
+    <string name="activity_title_about_us">About Us</string>
+    <string name="activity_title_privacy_policy">Privacy Policy</string>
+    <string name="action_clear_all">Clear All</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_mark_all_read">Mark All as Read</string>
+    <string name="privacy_policy">Privacy Policy</string>
 
 </resources>

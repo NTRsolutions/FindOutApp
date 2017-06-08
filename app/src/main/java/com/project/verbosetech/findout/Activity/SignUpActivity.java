@@ -7,18 +7,20 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.project.verbosetech.findout.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
- * Created by this pc on 05-06-17.
+ * Created by this pc on 08-06-17.
  */
 
-public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button login;
+    Button sign_up;
+    TextView sign_in;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -28,10 +30,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        login=(Button)findViewById(R.id.login_button);
-        login.setOnClickListener(this);
-
+        setContentView(R.layout.activity_sign_up);
+        sign_in=(TextView)findViewById(R.id.sign_in);
+        sign_up=(Button)findViewById(R.id.sign_up_button);
+        sign_in.setOnClickListener(this);
+        sign_up.setOnClickListener(this);
     }
 
     @Override
@@ -39,9 +42,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (view.getId()){
 
-            case R.id.login_button:startActivity(new Intent(SignInActivity.this,MainActivity.class));
+            case R.id.sign_in:startActivity(new Intent(SignUpActivity.this,SignInActivity.class));
                 finish();
                 break;
+            case R.id.sign_up_button:startActivity(new Intent(SignUpActivity.this,SignInActivity.class));
+                finish();
+                break;
+
         }
+
     }
 }

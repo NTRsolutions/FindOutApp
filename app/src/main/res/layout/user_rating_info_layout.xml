@@ -8,11 +8,12 @@
     >
 
     <ImageView
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:background="@drawable/user_image_bckgrnd"
-        app:srcCompat="@drawable/ic_person_green_24dp"
-        android:id="@+id/user_image"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_usermini"
+        android:id="@+id/user_image"
+        android:layout_marginTop="10dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

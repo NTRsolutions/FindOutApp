@@ -1,12 +1,17 @@
 package com.project.verbosetech.findout.Activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.View;
 
 import com.project.verbosetech.findout.Models.Places;
 import com.project.verbosetech.findout.Othes.PlacesRecycleGrid;
@@ -14,6 +19,8 @@ import com.project.verbosetech.findout.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by this pc on 07-06-17.
@@ -25,11 +32,29 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     PlacesRecycleGrid adapter;
     RecyclerView recyclerView;
     List<Places> placesList;
+    Toolbar toolbar;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.places_recycle_view);
+        toolbar=(Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle("Restaurants");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_white_24dp);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+
+            }
+        });
         recyclerView=(RecyclerView)findViewById(R.id.place_recycle_grid);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -49,9 +74,15 @@ public class ListOfPlacesActivity extends AppCompatActivity {
             @Override
             public void onCardClick(String p) {
 
-                Toast.makeText(getApplicationContext(),"To be Implemented",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(ListOfPlacesActivity.this,DetailActivity.class));
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
     }
 }

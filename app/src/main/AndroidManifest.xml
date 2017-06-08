@@ -13,12 +13,22 @@
         android:theme="@style/AppTheme"
         android:name=".MyApp">
 
-        <activity
-            android:name=".Activity.ListOfPlacesActivity">
+        <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Activity.ListOfPlacesActivity"></activity>
+        <activity android:name=".Activity.DetailActivity"></activity>
+        <activity
+            android:name=".Activity.SignInActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+        </activity>
+        <activity android:name=".Activity.MainActivity"></activity>
+        <activity
+            android:name=".Activity.SignUpActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>

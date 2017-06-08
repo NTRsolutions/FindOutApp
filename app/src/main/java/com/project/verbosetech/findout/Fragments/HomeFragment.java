@@ -1,16 +1,21 @@
-package com.project.verbosetech.findout.Activity;
+package com.project.verbosetech.findout.Fragments;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.project.verbosetech.findout.Activity.ListOfPlacesActivity;
 import com.project.verbosetech.findout.Othes.CustomGridAdapter;
 import com.project.verbosetech.findout.Othes.CustomPagerAdapter;
 import com.project.verbosetech.findout.Othes.Pager;
@@ -18,14 +23,13 @@ import com.project.verbosetech.findout.R;
 
 import java.util.ArrayList;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
 /**
- * Created by this pc on 06-06-17.
+ * Created by this pc on 08-06-17.
  */
 
-public class ViewPagerDemo extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class HomeFragment extends Fragment implements ViewPager.OnPageChangeListener {
 
+    private View view;
     int[] mResources = {R.drawable.images_banner, R.drawable.images_banner, R.drawable.images_banner};
 
     Pager mViewPager;
@@ -39,28 +43,27 @@ public class ViewPagerDemo extends AppCompatActivity implements ViewPager.OnPage
     ArrayList<Integer> image;
     ArrayList<String> number;
 
-
+    @Nullable
     @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_pager);
-
-        mViewPager = (Pager) findViewById(R.id.viewpager);
-        pager_indicator = (LinearLayout) findViewById(R.id.viewPagerCountDots);
-        mAdapter = new CustomPagerAdapter(this, mResources);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view=inflater.inflate(R.layout.activity_view_pager,container,false);
+        mViewPager = (Pager) view.findViewById(R.id.viewpager);
+        pager_indicator = (LinearLayout) view.findViewById(R.id.viewPagerCountDots);
+        mAdapter = new CustomPagerAdapter(getActivity(), mResources);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(0);
         mViewPager.setOnPageChangeListener(this);
-        gridView=(GridView)findViewById(R.id.grid_view);
+        gridView=(GridView)view.findViewById(R.id.grid_view);
         setPageViewIndicator();
         setGridItems();
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                startActivity(new Intent(getActivity(), ListOfPlacesActivity.class));
+            }
+        });
+        return view;
     }
 
     private void setPageViewIndicator() {
@@ -70,7 +73,7 @@ public class ViewPagerDemo extends AppCompatActivity implements ViewPager.OnPage
         dots = new ImageView[dotsCount];
 
         for (int i = 0; i < dotsCount; i++) {
-            dots[i] = new ImageView(this);
+            dots[i] = new ImageView(getActivity());
             dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -98,10 +101,6 @@ public class ViewPagerDemo extends AppCompatActivity implements ViewPager.OnPage
         dots[0].setImageDrawable(getResources().getDrawable(R.drawable.selecteditem_dot));
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -154,7 +153,7 @@ public class ViewPagerDemo extends AppCompatActivity implements ViewPager.OnPage
         number.add("25");
         number.add("65");
         number.add("25");
-        customGridAdapter=new CustomGridAdapter(getApplicationContext(),place,number,image);
+        customGridAdapter=new CustomGridAdapter(getActivity(),place,number,image);
         gridView.setAdapter(customGridAdapter);
     }
 }
