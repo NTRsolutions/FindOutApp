@@ -34,7 +34,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by this pc on 08-06-17.
  */
 
-public class DetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class DetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -71,6 +71,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
             }
         });
+
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         createViewPager(viewPager);
 
@@ -152,6 +153,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
