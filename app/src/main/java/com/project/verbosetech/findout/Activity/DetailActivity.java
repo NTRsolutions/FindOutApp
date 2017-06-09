@@ -13,11 +13,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.project.verbosetech.findout.Fragments.InfoFragment;
+import com.project.verbosetech.findout.Fragments.MapFragment;
 import com.project.verbosetech.findout.Fragments.OffersFragment;
 import com.project.verbosetech.findout.Fragments.ReviewFragement;
 import com.project.verbosetech.findout.R;
@@ -31,14 +34,16 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by this pc on 08-06-17.
  */
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     Toolbar toolbar;
     RatingBar ratingBar;
-    ProgressBar progressBar1;
-
+    TextView tabOne;
+    TextView tabTwo;
+    TextView tabThree;
+    TextView tabfour;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -71,6 +76,28 @@ public class DetailActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tab_host);
         tabLayout.setupWithViewPager(viewPager);
+        setUpText();
+        tabLayout.addOnTabSelectedListener(this);
+    }
+
+    public void setUpText(){
+
+        tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabOne.setText("Info");
+        tabOne.setTextColor(Color.BLACK);
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabTwo.setText("Offers");
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+        tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabThree.setText("Reviews");
+        tabLayout.getTabAt(2).setCustomView(tabThree);
+
+        tabfour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabfour.setText("Map");
+        tabLayout.getTabAt(3).setCustomView(tabfour);
     }
 
     private void createViewPager(ViewPager viewPager) {
@@ -78,8 +105,52 @@ public class DetailActivity extends AppCompatActivity {
         adapter.addFrag(new InfoFragment(), "Info");
         adapter.addFrag(new OffersFragment(), "Offers");
         adapter.addFrag(new ReviewFragement(), "Reviews");
-        adapter.addFrag(new ReviewFragement(), "Map");
+        adapter.addFrag(new MapFragment(), "Map");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+
+        int position=tabLayout.getSelectedTabPosition();
+        if(position==0){
+
+            tabOne.setTextColor(Color.BLACK);
+            tabTwo.setTextColor(Color.GRAY);
+            tabThree.setTextColor(Color.GRAY);
+            tabfour.setTextColor(Color.GRAY);
+
+        }
+        else if(position==1){
+            tabOne.setTextColor(Color.GRAY);
+            tabTwo.setTextColor(Color.BLACK);
+            tabThree.setTextColor(Color.GRAY);
+            tabfour.setTextColor(Color.GRAY);
+        }
+        else if(position==2){
+            tabOne.setTextColor(Color.GRAY);
+            tabTwo.setTextColor(Color.GRAY);
+            tabThree.setTextColor(Color.BLACK);
+            tabfour.setTextColor(Color.GRAY);
+        }
+        else
+        {
+            tabOne.setTextColor(Color.GRAY);
+            tabTwo.setTextColor(Color.GRAY);
+            tabThree.setTextColor(Color.GRAY);
+            tabfour.setTextColor(Color.BLACK);
+        }
+
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -111,4 +182,10 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_detail_layout,menu);
+        return true;
+    }
 }

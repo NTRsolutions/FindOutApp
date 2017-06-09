@@ -18,7 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Aloo and Dal ki Tikki \nCheese Balls \nChicken Satay \nBhuna Masala Chicken Wings"/>
+        android:text="Aloo and Dal ki Tikki \nCheese Balls \nChicken Satay \nBhuna Masala Chicken Wings"
+        android:lineSpacingExtra="2.5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Tofu and Veggies in Peanut Sauce \nCheese Balls \nChicken Satay \nBhuna Masala Chicken Wings"/>
+        android:text="Tofu and Veggies in Peanut Sauce \nCheese Balls \nChicken Satay \nBhuna Masala Chicken Wings"
+        android:lineSpacingExtra="2.5dp"/>
 
     />
 
@@ -48,7 +50,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Aloo and Dal ki Tikki \nCheese Balls \nChicken Satay \nBhuna Masala Chicken Wings"/>
+        android:text="Aloo and Dal ki Tikki \nCheese Balls \nChicken Satay \nBhuna Masala Chicken Wings"
+        android:lineSpacingExtra="2.5dp"/>
     />
 
 </LinearLayout>

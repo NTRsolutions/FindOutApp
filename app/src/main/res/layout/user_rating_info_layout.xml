@@ -62,8 +62,8 @@
         android:textSize="12dp"
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:id="@+id/rating"
         />
 
@@ -75,7 +75,8 @@
             android:layout_weight="35"
             android:layout_marginTop="15dp"
             android:gravity="right"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            >
 
             <RatingBar
                 android:layout_width="wrap_content"
