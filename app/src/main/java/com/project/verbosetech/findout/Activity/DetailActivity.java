@@ -2,6 +2,8 @@ package com.project.verbosetech.findout.Activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -12,9 +14,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
 
 import com.project.verbosetech.findout.Fragments.InfoFragment;
-import com.project.verbosetech.findout.Fragments.MapFragment;
 import com.project.verbosetech.findout.Fragments.OffersFragment;
 import com.project.verbosetech.findout.Fragments.ReviewFragement;
 import com.project.verbosetech.findout.R;
@@ -33,6 +36,8 @@ public class DetailActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     Toolbar toolbar;
+    RatingBar ratingBar;
+    ProgressBar progressBar1;
 
 
     @Override
@@ -44,6 +49,11 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_detail_layout);
+
+        ratingBar=(RatingBar)findViewById(R.id.rating_bar);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
+
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle("Back");
         toolbar.setTitleTextColor(Color.WHITE);
@@ -68,7 +78,7 @@ public class DetailActivity extends AppCompatActivity {
         adapter.addFrag(new InfoFragment(), "Info");
         adapter.addFrag(new OffersFragment(), "Offers");
         adapter.addFrag(new ReviewFragement(), "Reviews");
-        adapter.addFrag(new MapFragment(), "Map");
+        adapter.addFrag(new ReviewFragement(), "Map");
         viewPager.setAdapter(adapter);
     }
 

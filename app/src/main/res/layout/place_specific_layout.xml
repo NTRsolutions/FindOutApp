@@ -64,6 +64,7 @@
                     android:theme="@style/RatingBar"
                     android:numStars="5"
                     android:progressTint="@color/orange"
+                    android:id="@+id/rating_bar"
                     />
 
 

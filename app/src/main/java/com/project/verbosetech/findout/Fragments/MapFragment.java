@@ -4,6 +4,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.project.verbosetech.findout.R;
 import com.project.verbosetech.findout.Activity.SignInActivity;
+import com.project.verbosetech.findout.R;
 
 /**
  * Created by this pc on 06-06-17.
@@ -28,15 +30,28 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private View view;
     private static final String TAG = SignInActivity.class.getSimpleName();
+    SupportMapFragment mapFragment;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.map_layout,container,false);
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        FragmentManager fm = getChildFragmentManager();
+        mapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
+        if (mapFragment == null) {
+            mapFragment = new SupportMapFragment();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(R.id.map, mapFragment, "mapFragment");
+            ft.commit();
+            fm.executePendingTransactions();
+        }
+        mapFragment.getMapAsync(this);
     }
 
     @Override

@@ -34,13 +34,15 @@
         android:layout_height="wrap_content"
         android:text="Rajesh Shah"
         android:textColor="@color/colorPrimary"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:id="@+id/name"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="21st March, 2014"
-        android:textSize="11sp"/>
+        android:textSize="11sp"
+        android:id="@+id/date"/>
 
     </LinearLayout>
 
@@ -62,6 +64,7 @@
         android:paddingBottom="1dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:id="@+id/rating"
         />
 
         </LinearLayout>
@@ -81,6 +84,7 @@
                 android:rating="5"
                 android:theme="@style/RatingBar"
                 android:numStars="5"
+                android:id="@+id/rating_bar"
                 />
 
         </LinearLayout>

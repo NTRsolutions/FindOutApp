@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.RatingBar;
 
 import com.project.verbosetech.findout.Models.Places;
 import com.project.verbosetech.findout.Othes.PlacesRecycleGrid;
@@ -33,6 +34,8 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Places> placesList;
     Toolbar toolbar;
+    RatingBar ratingBar;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -48,6 +51,9 @@ public class ListOfPlacesActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_white_24dp);
         setSupportActionBar(toolbar);
+
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,13 +1,19 @@
 package com.project.verbosetech.findout.Othes;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.project.verbosetech.findout.Models.Places;
 import com.project.verbosetech.findout.R;
 
@@ -23,6 +29,7 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
     private List<Places> dataSet ;
     public Context context=null;
     VenueAdapterClickCallbacks venueAdapterClickCallbacks;
+    String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
 
 
     public class MyHolder extends RecyclerView.ViewHolder
@@ -31,6 +38,7 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
         TextView address;
         TextView distance;
         ImageView image;
+        RatingBar ratingBar;
 
         public MyHolder(View itemView)
         {
@@ -39,6 +47,7 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
             this.address = (TextView) itemView.findViewById(R.id.place_add);
             this.distance=(TextView)itemView.findViewById(R.id.distance);
             this.image=(ImageView)itemView.findViewById(R.id.res_image);
+            this.ratingBar=(RatingBar)itemView.findViewById(R.id.rating_bar);
         }
     }
 
@@ -67,20 +76,22 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
         TextView address = holder.address;
         TextView distance = holder.distance;
         ImageView image=holder.image;
+        RatingBar ratingBar=holder.ratingBar;
         name.setText(dataSet.get(position).getName());
 
         address.setText(dataSet.get(position).getAddress());
         distance.setText(dataSet.get(position).getDistance());
-        image.setImageResource(R.drawable.images_restaurant);
 
-//        Glide.with(context).load(image_address)
-//                .dontAnimate()
-//                .centerCrop()
-//                .override(500,500)
-//                .bitmapTransform(new RoundedCornersTransformation(context,10,0, RoundedCornersTransformation.CornerType.TOP))
-//                .placeholder(R.drawable.placeholder)
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(image);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
+
+        Glide.with(context).load(image_address)
+                .dontAnimate()
+                .centerCrop()
+                .override(500,500)
+                .bitmapTransform(new RoundedCornersTransformation(context,50,0, RoundedCornersTransformation.CornerType.TOP))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
