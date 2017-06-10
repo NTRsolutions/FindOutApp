@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -36,7 +39,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by this pc on 08-06-17.
  */
 
-public class DetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
+public class DetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener,AppBarLayout.OnOffsetChangedListener{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -49,6 +52,11 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     CollapsingToolbarLayout collapsingToolbarLayout;
     NestedScrollView nestedScrollView;
     String title="Back";
+
+    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
+    private static final int ALPHA_ANIMATIONS_DURATION              = 200;
+    private boolean mIsTheTitleContainerVisible = true;
+    LinearLayout mTitleContainer;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -81,6 +89,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         nestedScrollView = (NestedScrollView) findViewById (R.id.nest_scrollview);
         nestedScrollView.setFillViewport (true);
 
+        mTitleContainer=(LinearLayout)findViewById(R.id.container);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         createViewPager(viewPager);
@@ -164,6 +173,14 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     }
 
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        int maxScroll = appBarLayout.getTotalScrollRange();
+        float percentage = (float) Math.abs(verticalOffset) / (float) maxScroll;
+
+        handleAlphaOnTitle(percentage);
+    }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -199,5 +216,31 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
         getMenuInflater().inflate(R.menu.menu_detail_layout,menu);
         return true;
+    }
+
+    private void handleAlphaOnTitle(float percentage) {
+        if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
+            if(mIsTheTitleContainerVisible) {
+                startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
+                mIsTheTitleContainerVisible = false;
+            }
+
+        } else {
+
+            if (!mIsTheTitleContainerVisible) {
+                startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
+                mIsTheTitleContainerVisible = true;
+            }
+        }
+    }
+
+    public static void startAlphaAnimation (View v, long duration, int visibility) {
+        AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
+                ? new AlphaAnimation(0f, 1f)
+                : new AlphaAnimation(1f, 0f);
+
+        alphaAnimation.setDuration(duration);
+        alphaAnimation.setFillAfter(true);
+        v.startAnimation(alphaAnimation);
     }
 }

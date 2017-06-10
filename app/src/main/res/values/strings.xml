@@ -61,6 +61,7 @@
         <item>Profile</item>
         <item>Share Now</item>
         <item>Need help?</item>
+        <item>Sign out</item>
     </string-array>
 
     <string name="activity_title_about_us">About Us</string>

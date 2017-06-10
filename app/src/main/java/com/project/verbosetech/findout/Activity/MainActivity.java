@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.project.verbosetech.findout.Fragments.EmptyFragment;
 import com.project.verbosetech.findout.Fragments.HomeFragment;
 import com.project.verbosetech.findout.Fragments.ProfileFragment;
 import com.project.verbosetech.findout.R;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
+    EmptyFragment emptyFragment;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
 
 
         // Navigation view header
@@ -164,14 +168,35 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
+
             case 1:
 
+                Toast.makeText(getApplicationContext(),"To be implelemented",Toast.LENGTH_LONG).show();
+                emptyFragment=new EmptyFragment();
+                return emptyFragment;
+
             case 2:
+
                 ProfileFragment profileFragment = new ProfileFragment();
                 return profileFragment;
+
             case 3:
 
+                Toast.makeText(getApplicationContext(),"To be implelemented",Toast.LENGTH_LONG).show();
+                emptyFragment=new EmptyFragment();
+                return emptyFragment;
+
             case 4:
+
+                Toast.makeText(getApplicationContext(),"To be implelemented",Toast.LENGTH_LONG).show();
+                emptyFragment=new EmptyFragment();
+                return emptyFragment;
+
+            case 5:
+
+                Toast.makeText(getApplicationContext(),"To be implelemented",Toast.LENGTH_LONG).show();
+                emptyFragment=new EmptyFragment();
+                return emptyFragment;
 
             default:
                 return new HomeFragment();

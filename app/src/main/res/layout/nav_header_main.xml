@@ -2,18 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/view_container"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:gravity="bottom"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    >
 
     <ImageView
         android:id="@+id/img_header_bg"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo13"
+        android:src="@drawable/ic_15"
         android:background="@color/colorPrimary"
+        android:layout_centerInParent="true"
+        android:layout_margin="48dp"
         />
 
 </RelativeLayout>
