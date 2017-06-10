@@ -8,9 +8,11 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +24,11 @@ import android.widget.Toast;
 import com.project.verbosetech.findout.Fragments.EmptyFragment;
 import com.project.verbosetech.findout.Fragments.HomeFragment;
 import com.project.verbosetech.findout.Fragments.ProfileFragment;
+import com.project.verbosetech.findout.Models.GridCardModel;
+import com.project.verbosetech.findout.Othes.CustomGridAdapter;
 import com.project.verbosetech.findout.R;
+
+import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -30,7 +36,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by this pc on 08-06-17.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,HomeFragment.OnHeadlineSelectedListener{
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -38,12 +44,15 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtWebsite;
     private Toolbar toolbar;
+    List<GridCardModel> data;
+    public static CustomGridAdapter adapter;
 
 
     // urls to load navigation header background image
     // and profile image
     private static final String urlNavHeaderBg = "http://api.androidhive.info/images/nav-menu-header-bg.jpg";
     private static final String urlProfileImg = "https://lh3.googleusercontent.com/eCtE_G34M9ygdkmOpYvCag1vBARCmZwnVS6rS5t4JLzJ6QgQSBquM0nuTsCpLhYbKljoyS-txg";
+    String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
@@ -56,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_HELP = "help";
     private static final String TAG_SIGN = "sign";
     public static String CURRENT_TAG = TAG_HOME;
+    Menu menu;
 
     // toolbar titles respected to selected nav menu item
     private String[] activityTitles;
@@ -323,8 +333,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -335,6 +347,23 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+       return false;
+    }
+
+
+    @Override
+    public void onHomeSelected(CustomGridAdapter a) {
+        adapter=a;
     }
 
 }

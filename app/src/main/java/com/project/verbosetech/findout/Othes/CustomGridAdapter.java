@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.project.verbosetech.findout.Models.GridCardModel;
 import com.project.verbosetech.findout.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by this pc on 06-06-17.
@@ -22,22 +24,20 @@ import java.util.ArrayList;
 public class CustomGridAdapter extends BaseAdapter {
 
     private Context mContext;
-    private final ArrayList<String> place;
-    private final ArrayList<String> number;
     ArrayList<Integer> url;
     String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
+    int images[]={R.drawable.images_restaurant,R.drawable.images_gym,R.drawable.images_interior,R.drawable.images_tourntravels,R.drawable.images_restaurant,R.drawable.images_restaurant};
+    List<GridCardModel> dataSet;
 
-    public CustomGridAdapter(Context mContext, ArrayList<String> place, ArrayList<String> number, ArrayList<Integer> url) {
+    public CustomGridAdapter(Context mContext, List<GridCardModel> dataSet) {
         this.mContext = mContext;
-        this.place = place;
-        this.number = number;
-        this.url = url;
+        this.dataSet=dataSet;
     }
 
     @Override
     public int getCount() {
 
-        return place.size();
+        return dataSet.size();
     }
 
     @Override
@@ -65,14 +65,14 @@ public class CustomGridAdapter extends BaseAdapter {
             TextView tplace = (TextView) grid.findViewById(R.id.place);
             TextView tnumber = (TextView) grid.findViewById(R.id.number);
             ImageView imageView = (ImageView) grid.findViewById(R.id.image);
-            tplace.setText(place.get(position));
-            tnumber.setText(number.get(position));
+            tplace.setText(dataSet.get(position).getName());
+            tnumber.setText(dataSet.get(position).getNumber());
 
-            Glide.with(mContext).load(image_address)
+            Glide.with(mContext).load(images[position])
                     .dontAnimate()
                     .centerCrop()
                     .override(500,500)
-                    .bitmapTransform(new RoundedCornersTransformation(mContext,150,0, RoundedCornersTransformation.CornerType.TOP))
+                    .bitmapTransform(new RoundedCornersTransformation(mContext,50,0, RoundedCornersTransformation.CornerType.TOP))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
         }
@@ -90,5 +90,11 @@ public class CustomGridAdapter extends BaseAdapter {
                 .fit()
                 .centerCrop()
                 .into(img);
+    }
+
+    public void setFilter(List<GridCardModel> Model) {
+        dataSet = new ArrayList<>();
+        dataSet.addAll(Model);
+        notifyDataSetChanged();
     }
 }

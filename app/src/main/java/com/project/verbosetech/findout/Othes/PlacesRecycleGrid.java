@@ -85,11 +85,11 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
 
-        Glide.with(context).load(image_address)
+        Glide.with(context).load(R.drawable.images_restaurant)
                 .dontAnimate()
                 .centerCrop()
                 .override(500,500)
-                .bitmapTransform(new RoundedCornersTransformation(context,50,0, RoundedCornersTransformation.CornerType.TOP))
+                .bitmapTransform(new RoundedCornersTransformation(context,10,0, RoundedCornersTransformation.CornerType.TOP))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(image);
 

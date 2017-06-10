@@ -1,5 +1,6 @@
 package com.project.verbosetech.findout.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,12 +17,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.project.verbosetech.findout.Activity.ListOfPlacesActivity;
+import com.project.verbosetech.findout.Models.GridCardModel;
 import com.project.verbosetech.findout.Othes.CustomGridAdapter;
 import com.project.verbosetech.findout.Othes.CustomPagerAdapter;
 import com.project.verbosetech.findout.Othes.Pager;
 import com.project.verbosetech.findout.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by this pc on 08-06-17.
@@ -42,6 +45,30 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     ArrayList<String> place;
     ArrayList<Integer> image;
     ArrayList<String> number;
+    List<GridCardModel> gridCardModelList;
+    String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
+
+
+    HomeFragment.OnHeadlineSelectedListener mCallback;
+
+    // Container Activity must implement this interface
+    public interface OnHeadlineSelectedListener {
+        void onHomeSelected(CustomGridAdapter a);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (HomeFragment.OnHeadlineSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
     @Nullable
     @Override
@@ -63,6 +90,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
                 startActivity(new Intent(getActivity(), ListOfPlacesActivity.class));
             }
         });
+        getAdapter();
         return view;
     }
 
@@ -131,29 +159,19 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     public void setGridItems(){
 
-
-        place=new ArrayList<>();
-        image=new ArrayList<>();
-        number=new ArrayList<>();
-        place.add("Restaurant");
-        place.add("Restaurant");
-        place.add("Restaurant");
-        place.add("Restaurant");
-        place.add("Restaurant");
-        place.add("Restaurant");
-        image.add(R.drawable.images_restaurant);
-        image.add(R.drawable.images_gym);
-        image.add(R.drawable.images_interior);
-        image.add(R.drawable.images_gym);
-        image.add(R.drawable.images_interior);
-        image.add(R.drawable.images_gym);
-        number.add("85");
-        number.add("45");
-        number.add("65");
-        number.add("25");
-        number.add("65");
-        number.add("25");
-        customGridAdapter=new CustomGridAdapter(getActivity(),place,number,image);
+        gridCardModelList=new ArrayList<>();
+        gridCardModelList.add(new GridCardModel(image_address,"Restaurant","85"));
+        gridCardModelList.add(new GridCardModel(image_address,"Gymnasium","85"));
+        gridCardModelList.add(new GridCardModel(image_address,"Home Decor","85"));
+        gridCardModelList.add(new GridCardModel(image_address,"Travelers","85"));
+        gridCardModelList.add(new GridCardModel(image_address,"Restaurant","85"));
+        gridCardModelList.add(new GridCardModel(image_address,"Restaurant","85"));
+        customGridAdapter=new CustomGridAdapter(getActivity(),gridCardModelList);
         gridView.setAdapter(customGridAdapter);
+    }
+
+    public void getAdapter() {
+
+        mCallback.onHomeSelected(customGridAdapter);
     }
 }

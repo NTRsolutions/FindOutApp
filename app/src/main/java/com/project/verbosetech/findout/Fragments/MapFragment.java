@@ -2,11 +2,13 @@ package com.project.verbosetech.findout.Fragments;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +21,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -124,12 +125,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         } catch (Resources.NotFoundException e) {
             Log.e(TAG, "Can't find style. Error: ", e);
         }
+        mMap.getUiSettings().setZoomGesturesEnabled(false);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setPadding(0,15,0,250);
 
-//        LatLng delhi = new LatLng(28.650701, 77.233410);
-//        mMap.addMarker(new MarkerOptions().position(delhi).icon(BitmapDescriptorFactory.fromResource(R.drawable.logom))
-//                .title("Marker in Delhi"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(delhi));
-//        mMap.setMinZoomPreference(10.0f);
+
+
+        LatLng delhi = new LatLng(28.650701, 77.233410);
+        mMap.addMarker(new MarkerOptions().position(delhi).icon(BitmapDescriptorFactory.fromResource(R.drawable.logom))
+                .title("Marker in Delhi"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(delhi));
+        mMap.setMinZoomPreference(10.0f);
 
 
     }
@@ -137,15 +143,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     @Override
     public void onClick(View view) {
 
+            Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=28.655701, 77.234410&daddr=28.650701, 77.233410"));
+            startActivity(intent);
 
-        sendRequest();
     }
 
     private void sendRequest() {
 
         LatLng origin = new LatLng(currentLatitude,currentLongitude);
         LatLng destination = new LatLng(currentLatitude+0.005, currentLongitude+0.005);
-        Toast.makeText(getActivity(),currentLatitude+","+currentLongitude,Toast.LENGTH_LONG).show();
+
 
         try {
             new DirectionFinder(this, origin, destination).execute();
@@ -288,7 +295,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         currentLatitude = location.getLatitude();
         currentLongitude = location.getLongitude();
-        Toast.makeText(getActivity(), currentLatitude + " WORKS " + currentLongitude + "", Toast.LENGTH_LONG).show();
+
         sendRequest();
 
     }
