@@ -15,7 +15,8 @@
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         app:contentInsetStartWithNavigation="0dp"
-        />
+        >
+    </android.support.v7.widget.Toolbar>
 
 
 

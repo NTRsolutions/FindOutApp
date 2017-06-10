@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by this pc on 08-06-17.
  */
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,HomeFragment.OnHeadlineSelectedListener{
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,HomeFragment.OnHeadlineSelectedListener, View.OnClickListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -74,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
     EmptyFragment emptyFragment;
+    Button edit,save;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -87,6 +90,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        edit=(Button) toolbar.findViewById(R.id.edit);
+        save=(Button) toolbar.findViewById(R.id.save);
+        edit.setOnClickListener(this);
+        save.setOnClickListener(this);
+
 
         mHandler = new Handler();
 
@@ -181,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
             case 1:
 
-                Toast.makeText(getApplicationContext(),"To be implelemented",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"To be implemented",Toast.LENGTH_LONG).show();
                 emptyFragment=new EmptyFragment();
                 return emptyFragment;
 
@@ -192,19 +200,19 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
             case 3:
 
-                Toast.makeText(getApplicationContext(),"To be implelemented",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"To be implemented",Toast.LENGTH_LONG).show();
                 emptyFragment=new EmptyFragment();
                 return emptyFragment;
 
             case 4:
 
-                Toast.makeText(getApplicationContext(),"To be implelemented",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"To be implemented",Toast.LENGTH_LONG).show();
                 emptyFragment=new EmptyFragment();
                 return emptyFragment;
 
             case 5:
 
-                Toast.makeText(getApplicationContext(),"To be implelemented",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"To be implemented",Toast.LENGTH_LONG).show();
                 emptyFragment=new EmptyFragment();
                 return emptyFragment;
 
@@ -215,16 +223,29 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private void setToolbarTitle() {
 
-        if(navItemIndex!=0) {
+        if(navItemIndex==0) {
+            getSupportActionBar().setIcon(R.drawable.ic_location_on_white_24dp);
+            getSupportActionBar().setTitle(" Delhi");
+            edit.setVisibility(View.GONE);
+            save.setVisibility(View.GONE);
+
+        }
+
+        else if(navItemIndex==2)
+        {
             getSupportActionBar().setTitle(activityTitles[navItemIndex]);
             getSupportActionBar().setIcon(
                     new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            edit.setVisibility(View.VISIBLE);
+            save.setVisibility(View.GONE);
         }
-        else
-        {
-            getSupportActionBar().setIcon(R.drawable.ic_location_on_white_24dp);
-            getSupportActionBar().setTitle(" Delhi");
 
+        else {
+            getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+            getSupportActionBar().setIcon(
+                    new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            edit.setVisibility(View.GONE);
+            save.setVisibility(View.GONE);
         }
     }
 
@@ -334,10 +355,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        if(navItemIndex!=2)
+        {getMenuInflater().inflate(R.menu.menu_main, menu);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setOnQueryTextListener(this);
-        return true;
+        return true;}
+        else
+            return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -366,4 +390,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         adapter=a;
     }
 
+    @Override
+    public void onClick(View view) {
+
+        switch(view.getId()){
+
+            case R.id.edit:
+                            edit.setVisibility(View.GONE);
+                            save.setVisibility(View.VISIBLE);
+                            break;
+            case R.id.save:
+                            edit.setVisibility(View.VISIBLE);
+                            save.setVisibility(View.GONE);
+                            break;
+
+        }
+    }
 }
