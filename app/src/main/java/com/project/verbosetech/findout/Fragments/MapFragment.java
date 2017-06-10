@@ -127,7 +127,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         }
         mMap.getUiSettings().setZoomGesturesEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.setPadding(0,15,0,250);
+        mMap.setPadding(0,0,20,250);
 
 
 
