@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     private TabLayout tabLayout;
     private ViewPager viewPager;
     Toolbar toolbar;
-    RatingBar ratingBar;
+    RatingBar ratingBar,ratingBar2;
     TextView tabOne;
     TextView tabTwo;
     TextView tabThree;
@@ -58,11 +59,18 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     CollapsingToolbarLayout collapsingToolbarLayout;
     NestedScrollView nestedScrollView;
     String title="Back";
+    ImageView back;
 
+    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.9f;
     private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
     private static final int ALPHA_ANIMATIONS_DURATION              = 200;
+
+    private boolean mIsTheTitleVisible          = false;
     private boolean mIsTheTitleContainerVisible = true;
-    LinearLayout mTitleContainer;
+
+    LinearLayout mTitleContainer, tTitleContainer;
+    AppBarLayout appBarLayout;
+    TextView textView;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -75,19 +83,21 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         setContentView(R.layout.restaurant_detail_layout);
 
         ratingBar=(RatingBar)findViewById(R.id.rating_bar);
+        ratingBar2=(RatingBar)findViewById(R.id.trating_bar);
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
 
+        LayerDrawable stars2 = (LayerDrawable) ratingBar2.getProgressDrawable();
+        stars2.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
+
         toolbar=(Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle("Back");
-        toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_white_24dp);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
 
+                finish();
             }
         });
 
@@ -96,6 +106,8 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         nestedScrollView.setFillViewport (true);
 
         mTitleContainer=(LinearLayout)findViewById(R.id.container);
+        appBarLayout=(AppBarLayout)findViewById(R.id.app_bar_layout);
+        tTitleContainer=(LinearLayout)findViewById(R.id.tcontainer);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         createViewPager(viewPager);
@@ -104,6 +116,10 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         tabLayout.setupWithViewPager(viewPager);
         setUpText();
         tabLayout.addOnTabSelectedListener(this);
+
+        appBarLayout.addOnOffsetChangedListener(this);
+        startAlphaAnimation(mTitleContainer, 0, View.VISIBLE);
+        startAlphaAnimation(tTitleContainer, 0, View.INVISIBLE);
     }
 
     public void setUpText(){
@@ -181,10 +197,12 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
         int maxScroll = appBarLayout.getTotalScrollRange();
         float percentage = (float) Math.abs(verticalOffset) / (float) maxScroll;
 
         handleAlphaOnTitle(percentage);
+        handleToolbarTitleVisibility(percentage);
     }
 
 
@@ -262,6 +280,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     }
 
     private void handleAlphaOnTitle(float percentage) {
+
         if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
             if(mIsTheTitleContainerVisible) {
                 startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
@@ -273,6 +292,25 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
             if (!mIsTheTitleContainerVisible) {
                 startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
                 mIsTheTitleContainerVisible = true;
+            }
+        }
+    }
+
+    private void handleToolbarTitleVisibility(float percentage) {
+        if (percentage >= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) {
+
+            if(!mIsTheTitleVisible) {
+                startAlphaAnimation(tTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
+                mIsTheTitleVisible = true;
+
+
+            }
+
+        } else {
+
+            if (mIsTheTitleVisible) {
+                startAlphaAnimation(tTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
+                mIsTheTitleVisible = false;
             }
         }
     }
