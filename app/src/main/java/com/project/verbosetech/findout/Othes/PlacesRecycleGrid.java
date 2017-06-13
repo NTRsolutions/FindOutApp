@@ -23,13 +23,32 @@ import java.util.List;
  * Created by this pc on 07-06-17.
  */
 
-public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.MyHolder>{
+public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.MyHolder> implements View.OnClickListener {
 
     public RecyclerView re;
     private List<Places> dataSet ;
     public Context context=null;
     VenueAdapterClickCallbacks venueAdapterClickCallbacks;
     String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
+    int current;
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+
+            case R.id.share:
+
+                venueAdapterClickCallbacks.onShareClick(dataSet.get(current).getName());
+                break;
+
+            case R.id.phone:
+
+                venueAdapterClickCallbacks.onCallClick("7049575274");
+                break;
+        }
+
+    }
 
 
     public class MyHolder extends RecyclerView.ViewHolder
@@ -37,7 +56,7 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
         TextView name;
         TextView address;
         TextView distance;
-        ImageView image;
+        ImageView image,share,call;
         RatingBar ratingBar;
 
         public MyHolder(View itemView)
@@ -48,6 +67,8 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
             this.distance=(TextView)itemView.findViewById(R.id.distance);
             this.image=(ImageView)itemView.findViewById(R.id.res_image);
             this.ratingBar=(RatingBar)itemView.findViewById(R.id.rating_bar);
+            this.share=(ImageView)itemView.findViewById(R.id.share);
+            this.call=(ImageView)itemView.findViewById(R.id.phone);
         }
     }
 
@@ -77,6 +98,8 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
         TextView distance = holder.distance;
         ImageView image=holder.image;
         RatingBar ratingBar=holder.ratingBar;
+        ImageView share=holder.share;
+        ImageView call=holder.call;
         name.setText(dataSet.get(position).getName());
 
         address.setText(dataSet.get(position).getAddress());
@@ -102,6 +125,10 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
             }
         });
 
+        current=holder.getLayoutPosition();
+        share.setOnClickListener(this);
+        call.setOnClickListener(this);
+
     }
 
     @Override
@@ -111,6 +138,8 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
 
     public interface VenueAdapterClickCallbacks {
         void onCardClick( String p);
+        void onShareClick(String p);
+        void onCallClick(String p);
 
     }
 

@@ -231,8 +231,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         }
 
-        else if(navItemIndex==2)
-        {
+        else if(navItemIndex==2) {
             getSupportActionBar().setTitle(activityTitles[navItemIndex]);
             getSupportActionBar().setIcon(
                     new ColorDrawable(getResources().getColor(android.R.color.transparent)));

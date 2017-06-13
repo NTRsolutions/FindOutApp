@@ -33,7 +33,9 @@ import java.util.List;
 public class HomeFragment extends Fragment implements ViewPager.OnPageChangeListener {
 
     private View view;
-    int[] mResources = {R.drawable.images_banner, R.drawable.images_banner, R.drawable.images_banner};
+    int[] mResources = {R.drawable.images_banner, R.drawable.banner2, R.drawable.banner3};
+    String tag[]={"Share with your\nloved ones and get","Explore the new destinations..\nFind a traveler","Find any services\non your fingertips"};
+    String buttons[]={"50 Rs.Paytm","Find now","Search"};
 
     Pager mViewPager;
     private CustomPagerAdapter mAdapter;
@@ -76,7 +78,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         view=inflater.inflate(R.layout.activity_view_pager,container,false);
         mViewPager = (Pager) view.findViewById(R.id.viewpager);
         pager_indicator = (LinearLayout) view.findViewById(R.id.viewPagerCountDots);
-        mAdapter = new CustomPagerAdapter(getActivity(), mResources);
+        mAdapter = new CustomPagerAdapter(getActivity(), mResources,tag,buttons);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(0);
         mViewPager.setOnPageChangeListener(this);
