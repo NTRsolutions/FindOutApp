@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/about"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="2.5dp"
+        android:text="The Silverline Hotel, Jessore Road, Kolkata is well-known for delivering quality services to the guests since its inception."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hospi"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="15dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hospi"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="2.5dp"
+        android:text="Featuring all the modern amenities like air-conditioner, television and Wi-Fi internet access, the rooms will keep you comfortable and connected to the digital world"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/food"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="15dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/food"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="2.5dp"
+        android:text="There is also anin-house restaurant of the same name, which serves mouth-watering North Indian and Chinese dishes."/>
+
+</LinearLayout>
+    </android.support.v4.widget.NestedScrollView>

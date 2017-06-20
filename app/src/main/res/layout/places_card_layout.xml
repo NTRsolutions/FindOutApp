@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shadow_rect"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clipToPadding="false"
+    android:elevation="10dp"
+    android:layout_margin="10dp"
+    >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:id="@+id/image"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:padding="15dp"
+            android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restaurant"
+            android:layout_weight="90"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/place"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="85"
+            android:layout_weight="10"
+            android:gravity="right"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/number"
+            android:textColor="@color/light_grey"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
