@@ -6,12 +6,12 @@ package com.project.verbosetech.findout.Models;
 
 public class Places {
 
-    String image;
+    int image;
     String name;
     String address;
     String distance;
 
-    public Places(String image, String name, String address, String distance) {
+    public Places(int image, String name, String address, String distance) {
         this.image = image;
         this.name = name;
         this.address = address;
@@ -24,11 +24,11 @@ public class Places {
         this.distance = distance;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

@@ -66,7 +66,7 @@ public class CustomGridAdapter extends BaseAdapter {
             tplace.setText(dataSet.get(position).getName());
             tnumber.setText(dataSet.get(position).getNumber());
 
-            Glide.with(mContext).load(images[position])
+            Glide.with(mContext).load(dataSet.get(position).getImage())
                     .dontAnimate()
                     .centerCrop()
                     .override(500,500)

@@ -51,4 +51,13 @@ public class PrefManager {
         return pref.getInt("image", 0);
     }
 
+    public void setName(String name) {
+        editor.putString("name", name);
+        editor.commit();
+    }
+
+    public String getName() {
+        return pref.getString("name", null);
+    }
+
 }

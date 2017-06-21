@@ -6,21 +6,21 @@ package com.project.verbosetech.findout.Models;
 
 public class GridCardModel {
 
-    String image;
+    int image;
     String name;
     String number;
 
-    public GridCardModel(String image, String name, String number) {
+    public GridCardModel(int image, String name, String number) {
         this.image = image;
         this.name = name;
         this.number = number;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

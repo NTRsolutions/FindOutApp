@@ -20,6 +20,7 @@ import android.widget.RatingBar;
 
 import com.project.verbosetech.findout.Models.Places;
 import com.project.verbosetech.findout.Othes.PlacesRecycleGrid;
+import com.project.verbosetech.findout.Othes.PrefManager;
 import com.project.verbosetech.findout.R;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     List<Places> placesList;
     Toolbar toolbar;
     RatingBar ratingBar;
+    PrefManager prefManager;
 
 
     @Override
@@ -50,8 +52,9 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.places_recycle_view);
+        prefManager=new PrefManager(getApplicationContext());
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Restaurants");
+        toolbar.setTitle(prefManager.getName());
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_white_24dp);
         setSupportActionBar(toolbar);
@@ -76,9 +79,9 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     public void getCards() {
 
         placesList = new ArrayList<>();
-        placesList.add(new Places("Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
-        placesList.add(new Places("Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
-        placesList.add(new Places("Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
+        placesList.add(new Places(prefManager.getImage(),"Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
+        placesList.add(new Places(prefManager.getImage(),"Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
+        placesList.add(new Places(prefManager.getImage(),"Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
         adapter = new PlacesRecycleGrid(getApplicationContext(), placesList, new PlacesRecycleGrid.VenueAdapterClickCallbacks() {
             @Override
             public void onCardClick(String p) {

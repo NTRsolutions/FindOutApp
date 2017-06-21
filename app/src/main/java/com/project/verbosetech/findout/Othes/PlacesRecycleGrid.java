@@ -29,7 +29,6 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
     private List<Places> dataSet ;
     public Context context=null;
     VenueAdapterClickCallbacks venueAdapterClickCallbacks;
-    String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
     int current;
 
     @Override
@@ -108,7 +107,7 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
 
-        Glide.with(context).load(R.drawable.images_restaurant)
+        Glide.with(context).load(dataSet.get(position).getImage())
                 .dontAnimate()
                 .centerCrop()
                 .override(500,500)

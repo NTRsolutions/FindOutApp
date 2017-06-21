@@ -37,6 +37,8 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     int[] mResources = {R.drawable.images_banner, R.drawable.banner2, R.drawable.banner3};
     String tag[]={"Share with your\nloved ones and get","Explore the new destinations..\nFind a traveler","Find any services\non your fingertips"};
     String buttons[]={"50 Rs.Paytm","Find now","Search"};
+    int images[]={R.drawable.images_restaurant,R.drawable.images_gym,R.drawable.images_interior,R.drawable.images_tourntravels,R.drawable.images_restaurant,R.drawable.images_restaurant};
+
 
     Pager mViewPager;
     private CustomPagerAdapter mAdapter;
@@ -92,6 +94,9 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                prefManager.setName(gridCardModelList.get(i).getName());
+                prefManager.setNumber(gridCardModelList.get(i).getNumber());
+                prefManager.setImage(gridCardModelList.get(i).getImage());
                 startActivity(new Intent(getActivity(), ListOfPlacesActivity.class));
             }
         });
@@ -165,12 +170,12 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     public void setGridItems(){
 
         gridCardModelList=new ArrayList<>();
-        gridCardModelList.add(new GridCardModel(image_address,"Restaurant","3"));
-        gridCardModelList.add(new GridCardModel(image_address,"Gymnasium","3"));
-        gridCardModelList.add(new GridCardModel(image_address,"Home Decor","3"));
-        gridCardModelList.add(new GridCardModel(image_address,"Travelers","3"));
-        gridCardModelList.add(new GridCardModel(image_address,"Restaurant","3"));
-        gridCardModelList.add(new GridCardModel(image_address,"Restaurant","3"));
+        gridCardModelList.add(new GridCardModel(images[0],"Restaurant","3"));
+        gridCardModelList.add(new GridCardModel(images[1],"Gymnasium","3"));
+        gridCardModelList.add(new GridCardModel(images[2],"Home Decor","3"));
+        gridCardModelList.add(new GridCardModel(images[3],"Travelers","3"));
+        gridCardModelList.add(new GridCardModel(images[4],"Restaurant","3"));
+        gridCardModelList.add(new GridCardModel(images[5],"Restaurant","3"));
         customGridAdapter=new CustomGridAdapter(getActivity(),gridCardModelList);
         gridView.setAdapter(customGridAdapter);
     }
