@@ -51,7 +51,7 @@
 
     <!-- Navigation Drawer menu labels -->
     <string name="nav_home">Home</string>
-    <string name="nav_rated">Rated</string>
+    <string name="nav_rated">Rate</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_share">Share now</string>
     <string name="nav_help">Need help?</string>
@@ -73,5 +73,8 @@
     <string name="action_logout">Logout</string>
     <string name="action_mark_all_read">Mark All as Read</string>
     <string name="privacy_policy">Privacy Policy</string>
+
+    <string name="send">Send</string>
+    <string name="Message">Message</string>
 
 </resources>

@@ -1,7 +1,10 @@
 package com.project.verbosetech.findout.Activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -22,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.project.verbosetech.findout.Fragments.EmptyFragment;
+import com.project.verbosetech.findout.Fragments.ContactUs;
 import com.project.verbosetech.findout.Fragments.HomeFragment;
 import com.project.verbosetech.findout.Fragments.ProfileFragment;
 import com.project.verbosetech.findout.Models.GridCardModel;
@@ -74,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
-    EmptyFragment emptyFragment;
     Button edit,save;
 
 
@@ -187,34 +189,16 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
 
-            case 1:
-
-                Toast.makeText(getApplicationContext(),"To be implemented",Toast.LENGTH_LONG).show();
-                emptyFragment=new EmptyFragment();
-                return emptyFragment;
-
             case 2:
 
                 ProfileFragment profileFragment = new ProfileFragment();
                 return profileFragment;
 
-            case 3:
-
-                Toast.makeText(getApplicationContext(),"To be implemented",Toast.LENGTH_LONG).show();
-                emptyFragment=new EmptyFragment();
-                return emptyFragment;
-
             case 4:
 
-                Toast.makeText(getApplicationContext(),"To be implemented",Toast.LENGTH_LONG).show();
-                emptyFragment=new EmptyFragment();
-                return emptyFragment;
+                ContactUs contactUs = new ContactUs();
+                return contactUs;
 
-            case 5:
-
-                Toast.makeText(getApplicationContext(),"To be implemented",Toast.LENGTH_LONG).show();
-                emptyFragment=new EmptyFragment();
-                return emptyFragment;
 
             default:
                 return new HomeFragment();
@@ -267,26 +251,51 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
+
                     case R.id.nav_rated:
-                        navItemIndex = 1;
-                        CURRENT_TAG = TAG_RATED;
+
+                        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+                        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                        // To count with Play market back stack, After pressing back button,
+                        // to taken back to our application, we need to add following flags to intent.
+                        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                        try {
+                            startActivity(goToMarket);
+                        } catch (ActivityNotFoundException e) {
+                            startActivity(new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())));
+                        }
                         break;
+
                     case R.id.nav_profile:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_PROFILE;
                         break;
+
                     case R.id.nav_share:
-                        navItemIndex = 3;
-                        CURRENT_TAG = TAG_SHARE;
+
+                        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        sharingIntent.setType("text/plain");
+                        String shareBody = "http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
+                        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+                        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+
                         break;
+
                     case R.id.nav_need_help:
                         navItemIndex = 4;
                         CURRENT_TAG = TAG_HELP;
                         break;
+
                     case R.id.nav_sign_out:
-                        navItemIndex = 5;
-                        CURRENT_TAG = TAG_SIGN;
+
+                        startActivity(new Intent(MainActivity.this,SignInActivity.class));
+                        finish();
                         break;
+
                     default:
                         navItemIndex = 0;
                 }

@@ -24,8 +24,6 @@ import java.util.List;
 public class CustomGridAdapter extends BaseAdapter {
 
     private Context mContext;
-    ArrayList<Integer> url;
-    String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
     int images[]={R.drawable.images_restaurant,R.drawable.images_gym,R.drawable.images_interior,R.drawable.images_tourntravels,R.drawable.images_restaurant,R.drawable.images_restaurant};
     List<GridCardModel> dataSet;
 
