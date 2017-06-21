@@ -79,8 +79,8 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     public void getCards() {
 
         placesList = new ArrayList<>();
-        placesList.add(new Places(prefManager.getImage(),"Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
-        placesList.add(new Places(prefManager.getImage(),"Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
+        int l=Integer.parseInt(prefManager.getNumber());
+        for(int i=0;i<l;i++)
         placesList.add(new Places(prefManager.getImage(),"Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
         adapter = new PlacesRecycleGrid(getApplicationContext(), placesList, new PlacesRecycleGrid.VenueAdapterClickCallbacks() {
             @Override

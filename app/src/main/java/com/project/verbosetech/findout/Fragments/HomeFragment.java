@@ -171,9 +171,9 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
         gridCardModelList=new ArrayList<>();
         gridCardModelList.add(new GridCardModel(images[0],"Restaurant","3"));
-        gridCardModelList.add(new GridCardModel(images[1],"Gymnasium","3"));
-        gridCardModelList.add(new GridCardModel(images[2],"Home Decor","3"));
-        gridCardModelList.add(new GridCardModel(images[3],"Travelers","3"));
+        gridCardModelList.add(new GridCardModel(images[1],"Gymnasium","4"));
+        gridCardModelList.add(new GridCardModel(images[2],"Home Decor","5"));
+        gridCardModelList.add(new GridCardModel(images[3],"Travelers","2"));
         gridCardModelList.add(new GridCardModel(images[4],"Restaurant","3"));
         gridCardModelList.add(new GridCardModel(images[5],"Restaurant","3"));
         customGridAdapter=new CustomGridAdapter(getActivity(),gridCardModelList);
