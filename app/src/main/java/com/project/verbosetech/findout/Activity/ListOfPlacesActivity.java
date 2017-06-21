@@ -24,6 +24,7 @@ import com.project.verbosetech.findout.Othes.PrefManager;
 import com.project.verbosetech.findout.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -41,6 +42,11 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     Toolbar toolbar;
     RatingBar ratingBar;
     PrefManager prefManager;
+    String gymnames[]={"Talwalker Gym","Crunch and curves","Parijat","Goal"};
+    String hotelnames[]={"Hotel Silver Line","Aloha Hotel","Hotel Paradise"};
+    String homedecor[]={"Evershine Home Decor & Giftware","Guru Home Decor"};
+    String travelers[]={"Shivam Tours and Travels","Bombay Travels"};
+    ArrayList<String> name;
 
 
     @Override
@@ -80,8 +86,20 @@ public class ListOfPlacesActivity extends AppCompatActivity {
 
         placesList = new ArrayList<>();
         int l=Integer.parseInt(prefManager.getNumber());
+
+        switch (prefManager.getName()){
+
+            case "Restaurant":name=new ArrayList<>(Arrays.asList(hotelnames));
+                break;
+
+            case "Gymnasium":name=new ArrayList<>(Arrays.asList(gymnames));
+                break;
+
+            case "Home Decor":name=new ArrayList<>(Arrays.asList(homedecor));
+                break;
+        }
         for(int i=0;i<l;i++)
-        placesList.add(new Places(prefManager.getImage(),"Hotel Silver Line", "104, Old Street, New delhi", "5.4 km"));
+        placesList.add(new Places(prefManager.getImage(),name.get(i), "104, Old Street, New delhi", "5.4 km"));
         adapter = new PlacesRecycleGrid(getApplicationContext(), placesList, new PlacesRecycleGrid.VenueAdapterClickCallbacks() {
             @Override
             public void onCardClick(String p) {

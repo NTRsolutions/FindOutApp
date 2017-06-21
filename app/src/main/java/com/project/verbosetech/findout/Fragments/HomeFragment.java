@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     ArrayList<Integer> image;
     ArrayList<String> number;
     List<GridCardModel> gridCardModelList;
-    String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
     PrefManager prefManager;
 
 
@@ -172,7 +171,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         gridCardModelList=new ArrayList<>();
         gridCardModelList.add(new GridCardModel(images[0],"Restaurant","3"));
         gridCardModelList.add(new GridCardModel(images[1],"Gymnasium","4"));
-        gridCardModelList.add(new GridCardModel(images[2],"Home Decor","5"));
+        gridCardModelList.add(new GridCardModel(images[2],"Home Decor","2"));
         gridCardModelList.add(new GridCardModel(images[3],"Travelers","2"));
         gridCardModelList.add(new GridCardModel(images[4],"Restaurant","3"));
         gridCardModelList.add(new GridCardModel(images[5],"Restaurant","3"));
