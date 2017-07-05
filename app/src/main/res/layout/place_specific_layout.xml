@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/res_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_weight="100"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"

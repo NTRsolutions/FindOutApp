@@ -2,46 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-    <com.project.verbosetech.findout.Othes.Pager
+    <com.project.verbosetech.findout.other.Pager
+        android:id="@+id/viewpager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/viewpager"
-        android:background="@drawable/shadow_rect"
-       />
+        android:background="@drawable/shadow_rect" />
 
-        <LinearLayout
-            android:id="@+id/viewPagerCountDots"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/viewpager"
-            android:background="@android:color/transparent"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp"
-            />
-
-    <GridView
+    <LinearLayout
+        android:id="@+id/viewPagerCountDots"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="2"
-        android:gravity="center"
+        android:layout_alignBottom="@+id/viewpager"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" />
+
+    <GridView
         android:id="@+id/grid_view"
-        android:layout_below="@+id/viewPagerCountDots"
-        android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/viewpager"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:gravity="center"
         android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
-        android:layout_marginBottom="10dp">
+        android:numColumns="2"
+        android:verticalSpacing="10dp">
 
     </GridView>
-
-
-
 
 
 </RelativeLayout>
