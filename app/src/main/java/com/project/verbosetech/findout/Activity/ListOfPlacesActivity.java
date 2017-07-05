@@ -18,7 +18,9 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.RatingBar;
 
+import com.project.verbosetech.findout.Models.GridCardModel;
 import com.project.verbosetech.findout.Models.Places;
+import com.project.verbosetech.findout.Othes.Constants;
 import com.project.verbosetech.findout.Othes.PlacesRecycleGrid;
 import com.project.verbosetech.findout.Othes.PrefManager;
 import com.project.verbosetech.findout.R;
@@ -34,20 +36,28 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 
 public class ListOfPlacesActivity extends AppCompatActivity {
-
     private RecyclerView.LayoutManager layoutManager;
     PlacesRecycleGrid adapter;
     RecyclerView recyclerView;
     List<Places> placesList;
     Toolbar toolbar;
     RatingBar ratingBar;
-    PrefManager prefManager;
     String gymnames[] = {"Talwalker Gym", "Crunch and curves", "Parijat", "Goal"};
     String hotelnames[] = {"Hotel Silver Line", "Aloha Hotel", "Hotel Paradise"};
     String homedecor[] = {"Evershine Home Decor & Giftware", "Guru Home Decor"};
     String travelers[] = {"Shivam Tours and Travels", "Bombay Travels"};
     ArrayList<String> name;
 
+    String inName, inNumber;
+    int inImage;
+
+    public static Intent getIntent(Context context, GridCardModel gridCardModel) {
+        Intent intent = new Intent(context, ListOfPlacesActivity.class);
+        intent.putExtra(Constants.DATA_NAME, gridCardModel.getName());
+        intent.putExtra(Constants.DATA_NUMBER, gridCardModel.getNumber());
+        intent.putExtra(Constants.DATA_IMAGE, gridCardModel.getImage());
+        return intent;
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -58,9 +68,14 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.places_recycle_view);
-        prefManager = new PrefManager(getApplicationContext());
+
+        Intent intent = getIntent();
+        inName = intent.getStringExtra(Constants.DATA_NAME);
+        inNumber = intent.getStringExtra(Constants.DATA_NUMBER);
+        inImage = intent.getIntExtra(Constants.DATA_IMAGE, 0);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(prefManager.getName());
+        toolbar.setTitle(inName);
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_white_24dp);
         setSupportActionBar(toolbar);
@@ -84,25 +99,24 @@ public class ListOfPlacesActivity extends AppCompatActivity {
 
     public void getCards() {
         placesList = new ArrayList<>();
-        int l = Integer.parseInt(prefManager.getNumber());
-
-        switch (prefManager.getName()) {
-
+        switch (inName) {
             case "Restaurant":
                 name = new ArrayList<>(Arrays.asList(hotelnames));
                 break;
-
             case "Gymnasium":
                 name = new ArrayList<>(Arrays.asList(gymnames));
                 break;
-
             case "Home Decor":
                 name = new ArrayList<>(Arrays.asList(homedecor));
                 break;
+            case "Travelers":
+                name = new ArrayList<>(Arrays.asList(travelers));
+                break;
         }
 
+        int l = Integer.parseInt(inNumber);
         for (int i = 0; i < l; i++)
-            placesList.add(new Places(prefManager.getImage(), name.get(i), "104, Old Street, New delhi", "5.4 km"));
+            placesList.add(new Places(inImage, name.get(i), "104, Old Street, New delhi", "5.4 km"));
 
         adapter = new PlacesRecycleGrid(getApplicationContext(), placesList, new PlacesRecycleGrid.VenueAdapterClickCallbacks() {
             @Override

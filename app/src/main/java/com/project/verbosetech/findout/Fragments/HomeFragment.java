@@ -79,10 +79,10 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_view_pager, container, false);
-        prefManager = new PrefManager(getActivity());
+        prefManager = new PrefManager(getContext());
         mViewPager = (Pager) view.findViewById(R.id.viewpager);
         pager_indicator = (LinearLayout) view.findViewById(R.id.viewPagerCountDots);
-        mAdapter = new CustomPagerAdapter(getActivity(), mResources, tag, buttons);
+        mAdapter = new CustomPagerAdapter(getContext(), mResources, tag, buttons);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(0);
         mViewPager.setOnPageChangeListener(this);
@@ -92,11 +92,8 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                prefManager.setName(gridCardModelList.get(i).getName());
-                prefManager.setNumber(gridCardModelList.get(i).getNumber());
-                prefManager.setImage(gridCardModelList.get(i).getImage());
-                startActivity(new Intent(getActivity(), ListOfPlacesActivity.class));
+                GridCardModel gridCardModel = gridCardModelList.get(i);
+                startActivity(ListOfPlacesActivity.getIntent(getContext(), gridCardModel));
             }
         });
         getAdapter();
@@ -109,7 +106,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         dots = new ImageView[dotsCount];
 
         for (int i = 0; i < dotsCount; i++) {
-            dots[i] = new ImageView(getActivity());
+            dots[i] = new ImageView(getContext());
             dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -170,9 +167,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         gridCardModelList.add(new GridCardModel(images[1], "Gymnasium", "4"));
         gridCardModelList.add(new GridCardModel(images[2], "Home Decor", "2"));
         gridCardModelList.add(new GridCardModel(images[3], "Travelers", "2"));
-        gridCardModelList.add(new GridCardModel(images[4], "Restaurant", "3"));
-        gridCardModelList.add(new GridCardModel(images[5], "Restaurant", "3"));
-        customGridAdapter = new CustomGridAdapter(getActivity(), gridCardModelList);
+        customGridAdapter = new CustomGridAdapter(getContext(), gridCardModelList);
         gridView.setAdapter(customGridAdapter);
     }
 
