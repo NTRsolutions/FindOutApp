@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.project.verbosetech.findout.Models.GridCardModel;
 import com.project.verbosetech.findout.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +21,12 @@ import java.util.List;
  */
 
 public class CustomGridAdapter extends BaseAdapter {
-
     private Context mContext;
-    int images[]={R.drawable.images_restaurant,R.drawable.images_gym,R.drawable.images_interior,R.drawable.images_tourntravels,R.drawable.images_restaurant,R.drawable.images_restaurant};
     List<GridCardModel> dataSet;
 
     public CustomGridAdapter(Context mContext, List<GridCardModel> dataSet) {
         this.mContext = mContext;
-        this.dataSet=dataSet;
+        this.dataSet = dataSet;
     }
 
     @Override
@@ -69,25 +66,16 @@ public class CustomGridAdapter extends BaseAdapter {
             Glide.with(mContext).load(dataSet.get(position).getImage())
                     .dontAnimate()
                     .centerCrop()
-                    .override(500,500)
-                    .bitmapTransform(new RoundedCornersTransformation(mContext,50,0, RoundedCornersTransformation.CornerType.TOP))
+                    .placeholder(R.drawable.cast_album_art_placeholder)
+                    .bitmapTransform(new RoundedCornersTransformation(mContext, 50, 0, RoundedCornersTransformation.CornerType.TOP))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
-        }
-        else {
+        } else {
 
             grid = (View) convertView;
         }
 
         return grid;
-    }
-
-    private void setImageoncard(Context context, ImageView img, String url) {
-        Picasso.with(context)
-                .load(url)
-                .fit()
-                .centerCrop()
-                .into(img);
     }
 
     public void setFilter(List<GridCardModel> Model) {

@@ -42,10 +42,10 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     Toolbar toolbar;
     RatingBar ratingBar;
     PrefManager prefManager;
-    String gymnames[]={"Talwalker Gym","Crunch and curves","Parijat","Goal"};
-    String hotelnames[]={"Hotel Silver Line","Aloha Hotel","Hotel Paradise"};
-    String homedecor[]={"Evershine Home Decor & Giftware","Guru Home Decor"};
-    String travelers[]={"Shivam Tours and Travels","Bombay Travels"};
+    String gymnames[] = {"Talwalker Gym", "Crunch and curves", "Parijat", "Goal"};
+    String hotelnames[] = {"Hotel Silver Line", "Aloha Hotel", "Hotel Paradise"};
+    String homedecor[] = {"Evershine Home Decor & Giftware", "Guru Home Decor"};
+    String travelers[] = {"Shivam Tours and Travels", "Bombay Travels"};
     ArrayList<String> name;
 
 
@@ -58,7 +58,7 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.places_recycle_view);
-        prefManager=new PrefManager(getApplicationContext());
+        prefManager = new PrefManager(getApplicationContext());
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(prefManager.getName());
         toolbar.setTitleTextColor(Color.WHITE);
@@ -83,23 +83,27 @@ public class ListOfPlacesActivity extends AppCompatActivity {
     }
 
     public void getCards() {
-
         placesList = new ArrayList<>();
-        int l=Integer.parseInt(prefManager.getNumber());
+        int l = Integer.parseInt(prefManager.getNumber());
 
-        switch (prefManager.getName()){
+        switch (prefManager.getName()) {
 
-            case "Restaurant":name=new ArrayList<>(Arrays.asList(hotelnames));
+            case "Restaurant":
+                name = new ArrayList<>(Arrays.asList(hotelnames));
                 break;
 
-            case "Gymnasium":name=new ArrayList<>(Arrays.asList(gymnames));
+            case "Gymnasium":
+                name = new ArrayList<>(Arrays.asList(gymnames));
                 break;
 
-            case "Home Decor":name=new ArrayList<>(Arrays.asList(homedecor));
+            case "Home Decor":
+                name = new ArrayList<>(Arrays.asList(homedecor));
                 break;
         }
-        for(int i=0;i<l;i++)
-        placesList.add(new Places(prefManager.getImage(),name.get(i), "104, Old Street, New delhi", "5.4 km"));
+
+        for (int i = 0; i < l; i++)
+            placesList.add(new Places(prefManager.getImage(), name.get(i), "104, Old Street, New delhi", "5.4 km"));
+
         adapter = new PlacesRecycleGrid(getApplicationContext(), placesList, new PlacesRecycleGrid.VenueAdapterClickCallbacks() {
             @Override
             public void onCardClick(String p) {
@@ -109,14 +113,12 @@ public class ListOfPlacesActivity extends AppCompatActivity {
 
             @Override
             public void onShareClick(String p) {
-
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 String shareBody = "Here is the share content body";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
-
             }
 
             @Override
@@ -143,7 +145,7 @@ public class ListOfPlacesActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 }

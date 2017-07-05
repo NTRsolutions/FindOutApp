@@ -24,17 +24,16 @@ import java.util.List;
  */
 
 public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.MyHolder> implements View.OnClickListener {
-
     public RecyclerView re;
-    private List<Places> dataSet ;
-    public Context context=null;
+    private List<Places> dataSet;
+    public Context context = null;
     VenueAdapterClickCallbacks venueAdapterClickCallbacks;
     int current;
 
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.share:
 
@@ -50,41 +49,37 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
     }
 
 
-    public class MyHolder extends RecyclerView.ViewHolder
-    {
+    public class MyHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView address;
         TextView distance;
-        ImageView image,share,call;
+        ImageView image, share, call;
         RatingBar ratingBar;
 
-        public MyHolder(View itemView)
-        {
+        public MyHolder(View itemView) {
             super(itemView);
             this.name = (TextView) itemView.findViewById(R.id.place_name);
             this.address = (TextView) itemView.findViewById(R.id.place_add);
-            this.distance=(TextView)itemView.findViewById(R.id.distance);
-            this.image=(ImageView)itemView.findViewById(R.id.res_image);
-            this.ratingBar=(RatingBar)itemView.findViewById(R.id.rating_bar);
-            this.share=(ImageView)itemView.findViewById(R.id.share);
-            this.call=(ImageView)itemView.findViewById(R.id.phone);
+            this.distance = (TextView) itemView.findViewById(R.id.distance);
+            this.image = (ImageView) itemView.findViewById(R.id.res_image);
+            this.ratingBar = (RatingBar) itemView.findViewById(R.id.rating_bar);
+            this.share = (ImageView) itemView.findViewById(R.id.share);
+            this.call = (ImageView) itemView.findViewById(R.id.phone);
         }
     }
 
-    public PlacesRecycleGrid(Context c, List<Places> data, VenueAdapterClickCallbacks venueAdapterClickCallback)
-    {
+    public PlacesRecycleGrid(Context c, List<Places> data, VenueAdapterClickCallbacks venueAdapterClickCallback) {
 
         this.dataSet = data;
-        this.venueAdapterClickCallbacks=venueAdapterClickCallback;
-        context=c;
+        this.venueAdapterClickCallbacks = venueAdapterClickCallback;
+        context = c;
 
     }
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.place_specific_layout, parent, false);
-        MyHolder myNewsHolder=new MyHolder(view);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.place_specific_layout, parent, false);
+        MyHolder myNewsHolder = new MyHolder(view);
         re = (RecyclerView) parent.findViewById(R.id.place_recycle_grid);
         return myNewsHolder;
     }
@@ -95,23 +90,24 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
         TextView name = holder.name;
         TextView address = holder.address;
         TextView distance = holder.distance;
-        ImageView image=holder.image;
-        RatingBar ratingBar=holder.ratingBar;
-        ImageView share=holder.share;
-        ImageView call=holder.call;
+        ImageView image = holder.image;
+        RatingBar ratingBar = holder.ratingBar;
+        ImageView share = holder.share;
+        ImageView call = holder.call;
         name.setText(dataSet.get(position).getName());
 
         address.setText(dataSet.get(position).getAddress());
         distance.setText(dataSet.get(position).getDistance());
 
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(2).setColorFilter(Color.rgb(255, 165, 0), PorterDuff.Mode.SRC_ATOP);
 
         Glide.with(context).load(dataSet.get(position).getImage())
                 .dontAnimate()
                 .centerCrop()
-                .override(500,500)
-                .bitmapTransform(new RoundedCornersTransformation(context,10,0, RoundedCornersTransformation.CornerType.TOP))
+                //.override(500, 500)
+                .placeholder(R.drawable.cast_album_art_placeholder)
+                .bitmapTransform(new RoundedCornersTransformation(context, 10, 0, RoundedCornersTransformation.CornerType.TOP))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(image);
 
@@ -124,7 +120,7 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
             }
         });
 
-        current=holder.getLayoutPosition();
+        current = holder.getLayoutPosition();
         share.setOnClickListener(this);
         call.setOnClickListener(this);
 
@@ -136,8 +132,10 @@ public class PlacesRecycleGrid extends RecyclerView.Adapter<PlacesRecycleGrid.My
     }
 
     public interface VenueAdapterClickCallbacks {
-        void onCardClick( String p);
+        void onCardClick(String p);
+
         void onShareClick(String p);
+
         void onCallClick(String p);
 
     }

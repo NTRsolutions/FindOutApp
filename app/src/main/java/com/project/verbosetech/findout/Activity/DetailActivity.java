@@ -46,26 +46,26 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by this pc on 08-06-17.
  */
 
-public class DetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener,AppBarLayout.OnOffsetChangedListener{
+public class DetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, AppBarLayout.OnOffsetChangedListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     Toolbar toolbar;
-    RatingBar ratingBar,ratingBar2;
+    RatingBar ratingBar, ratingBar2;
     TextView tabOne;
     TextView tabTwo;
     TextView tabThree;
     TextView tabfour;
     CollapsingToolbarLayout collapsingToolbarLayout;
     NestedScrollView nestedScrollView;
-    String title="Back";
+    String title = "Back";
     ImageView back;
 
-    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.9f;
-    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
-    private static final int ALPHA_ANIMATIONS_DURATION              = 200;
+    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR = 0.9f;
+    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS = 0.3f;
+    private static final int ALPHA_ANIMATIONS_DURATION = 200;
 
-    private boolean mIsTheTitleVisible          = false;
+    private boolean mIsTheTitleVisible = false;
     private boolean mIsTheTitleContainerVisible = true;
 
     LinearLayout mTitleContainer, tTitleContainer;
@@ -82,17 +82,17 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_detail_layout);
 
-        ratingBar=(RatingBar)findViewById(R.id.rating_bar);
-        ratingBar2=(RatingBar)findViewById(R.id.trating_bar);
+        ratingBar = (RatingBar) findViewById(R.id.rating_bar);
+        ratingBar2 = (RatingBar) findViewById(R.id.trating_bar);
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(2).setColorFilter(Color.rgb(255, 165, 0), PorterDuff.Mode.SRC_ATOP);
 
         LayerDrawable stars2 = (LayerDrawable) ratingBar2.getProgressDrawable();
-        stars2.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
+        stars2.getDrawable(2).setColorFilter(Color.rgb(255, 165, 0), PorterDuff.Mode.SRC_ATOP);
 
-        toolbar=(Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        back=(ImageView)findViewById(R.id.back);
+        back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,13 +101,13 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
             }
         });
 
-        collapsingToolbarLayout=(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
-        nestedScrollView = (NestedScrollView) findViewById (R.id.nest_scrollview);
-        nestedScrollView.setFillViewport (true);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        nestedScrollView = (NestedScrollView) findViewById(R.id.nest_scrollview);
+        nestedScrollView.setFillViewport(true);
 
-        mTitleContainer=(LinearLayout)findViewById(R.id.container);
-        appBarLayout=(AppBarLayout)findViewById(R.id.app_bar_layout);
-        tTitleContainer=(LinearLayout)findViewById(R.id.tcontainer);
+        mTitleContainer = (LinearLayout) findViewById(R.id.container);
+        appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+        tTitleContainer = (LinearLayout) findViewById(R.id.tcontainer);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         createViewPager(viewPager);
@@ -122,7 +122,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         startAlphaAnimation(tTitleContainer, 0, View.INVISIBLE);
     }
 
-    public void setUpText(){
+    public void setUpText() {
 
         tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabOne.setText("Info");
@@ -154,29 +154,25 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
 
-        int position=tabLayout.getSelectedTabPosition();
-        if(position==0){
+        int position = tabLayout.getSelectedTabPosition();
+        if (position == 0) {
 
             tabOne.setTextColor(Color.BLACK);
             tabTwo.setTextColor(Color.GRAY);
             tabThree.setTextColor(Color.GRAY);
             tabfour.setTextColor(Color.GRAY);
 
-        }
-        else if(position==1){
+        } else if (position == 1) {
             tabOne.setTextColor(Color.GRAY);
             tabTwo.setTextColor(Color.BLACK);
             tabThree.setTextColor(Color.GRAY);
             tabfour.setTextColor(Color.GRAY);
-        }
-        else if(position==2){
+        } else if (position == 2) {
             tabOne.setTextColor(Color.GRAY);
             tabTwo.setTextColor(Color.GRAY);
             tabThree.setTextColor(Color.BLACK);
             tabfour.setTextColor(Color.GRAY);
-        }
-        else
-        {
+        } else {
             tabOne.setTextColor(Color.GRAY);
             tabTwo.setTextColor(Color.GRAY);
             tabThree.setTextColor(Color.GRAY);
@@ -238,14 +234,14 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_detail_layout,menu);
+        getMenuInflater().inflate(R.menu.menu_detail_layout, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.action_share:
 
@@ -282,7 +278,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     private void handleAlphaOnTitle(float percentage) {
 
         if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
-            if(mIsTheTitleContainerVisible) {
+            if (mIsTheTitleContainerVisible) {
                 startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
                 mIsTheTitleContainerVisible = false;
             }
@@ -299,7 +295,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     private void handleToolbarTitleVisibility(float percentage) {
         if (percentage >= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) {
 
-            if(!mIsTheTitleVisible) {
+            if (!mIsTheTitleVisible) {
                 startAlphaAnimation(tTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
                 mIsTheTitleVisible = true;
 
@@ -315,7 +311,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         }
     }
 
-    public static void startAlphaAnimation (View v, long duration, int visibility) {
+    public static void startAlphaAnimation(View v, long duration, int visibility) {
         AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
                 ? new AlphaAnimation(0f, 1f)
                 : new AlphaAnimation(1f, 0f);

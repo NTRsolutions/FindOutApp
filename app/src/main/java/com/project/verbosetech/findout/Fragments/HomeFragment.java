@@ -35,9 +35,9 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     private View view;
     int[] mResources = {R.drawable.images_banner, R.drawable.banner2, R.drawable.banner3};
-    String tag[]={"Share with your\nloved ones and get","Explore the new destinations..\nFind a traveler","Find any services\non your fingertips"};
-    String buttons[]={"50 Rs.Paytm","Find now","Search"};
-    int images[]={R.drawable.images_restaurant,R.drawable.images_gym,R.drawable.images_interior,R.drawable.images_tourntravels,R.drawable.images_restaurant,R.drawable.images_restaurant};
+    String tag[] = {"Share with your\nloved ones and get", "Explore the new destinations..\nFind a traveler", "Find any services\non your fingertips"};
+    String buttons[] = {"50 Rs.Paytm", "Find now", "Search"};
+    int images[] = {R.drawable.images_restaurant, R.drawable.images_gym, R.drawable.images_interior, R.drawable.images_tourntravels, R.drawable.images_restaurant, R.drawable.images_restaurant};
 
 
     Pager mViewPager;
@@ -78,15 +78,15 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.activity_view_pager,container,false);
-        prefManager=new PrefManager(getActivity());
+        view = inflater.inflate(R.layout.activity_view_pager, container, false);
+        prefManager = new PrefManager(getActivity());
         mViewPager = (Pager) view.findViewById(R.id.viewpager);
         pager_indicator = (LinearLayout) view.findViewById(R.id.viewPagerCountDots);
-        mAdapter = new CustomPagerAdapter(getActivity(), mResources,tag,buttons);
+        mAdapter = new CustomPagerAdapter(getActivity(), mResources, tag, buttons);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(0);
         mViewPager.setOnPageChangeListener(this);
-        gridView=(GridView)view.findViewById(R.id.grid_view);
+        gridView = (GridView) view.findViewById(R.id.grid_view);
         setPageViewIndicator();
         setGridItems();
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -166,16 +166,16 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     }
 
-    public void setGridItems(){
+    public void setGridItems() {
 
-        gridCardModelList=new ArrayList<>();
-        gridCardModelList.add(new GridCardModel(images[0],"Restaurant","3"));
-        gridCardModelList.add(new GridCardModel(images[1],"Gymnasium","4"));
-        gridCardModelList.add(new GridCardModel(images[2],"Home Decor","2"));
-        gridCardModelList.add(new GridCardModel(images[3],"Travelers","2"));
-        gridCardModelList.add(new GridCardModel(images[4],"Restaurant","3"));
-        gridCardModelList.add(new GridCardModel(images[5],"Restaurant","3"));
-        customGridAdapter=new CustomGridAdapter(getActivity(),gridCardModelList);
+        gridCardModelList = new ArrayList<>();
+        gridCardModelList.add(new GridCardModel(images[0], "Restaurant", "3"));
+        gridCardModelList.add(new GridCardModel(images[1], "Gymnasium", "4"));
+        gridCardModelList.add(new GridCardModel(images[2], "Home Decor", "2"));
+        gridCardModelList.add(new GridCardModel(images[3], "Travelers", "2"));
+        gridCardModelList.add(new GridCardModel(images[4], "Restaurant", "3"));
+        gridCardModelList.add(new GridCardModel(images[5], "Restaurant", "3"));
+        customGridAdapter = new CustomGridAdapter(getActivity(), gridCardModelList);
         gridView.setAdapter(customGridAdapter);
     }
 
