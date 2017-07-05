@@ -40,7 +40,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by this pc on 08-06-17.
  */
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, HomeFragment.OnHeadlineSelectedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, HomeFragment.OnHeadlineSelectedListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
-    Button edit, save;
 
 
     @Override
@@ -92,11 +91,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        edit = (Button) toolbar.findViewById(R.id.edit);
-        save = (Button) toolbar.findViewById(R.id.save);
-        edit.setOnClickListener(this);
-        save.setOnClickListener(this);
-
 
         mHandler = new Handler();
 
@@ -210,21 +204,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         if (navItemIndex == 0) {
             getSupportActionBar().setIcon(R.drawable.ic_location_on_white_24dp);
             getSupportActionBar().setTitle(" Delhi");
-            edit.setVisibility(View.GONE);
-            save.setVisibility(View.GONE);
 
         } else if (navItemIndex == 2) {
             getSupportActionBar().setTitle(activityTitles[navItemIndex]);
             getSupportActionBar().setIcon(
                     new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-            edit.setVisibility(View.VISIBLE);
-            save.setVisibility(View.GONE);
         } else {
             getSupportActionBar().setTitle(activityTitles[navItemIndex]);
             getSupportActionBar().setIcon(
                     new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-            edit.setVisibility(View.GONE);
-            save.setVisibility(View.GONE);
         }
     }
 
@@ -392,22 +380,5 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public void onHomeSelected(CustomGridAdapter a) {
         adapter = a;
-    }
-
-    @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-
-            case R.id.edit:
-                edit.setVisibility(View.GONE);
-                save.setVisibility(View.VISIBLE);
-                break;
-            case R.id.save:
-                edit.setVisibility(View.VISIBLE);
-                save.setVisibility(View.GONE);
-                break;
-
-        }
     }
 }

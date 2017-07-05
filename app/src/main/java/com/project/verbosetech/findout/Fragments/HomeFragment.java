@@ -21,7 +21,6 @@ import com.project.verbosetech.findout.Models.GridCardModel;
 import com.project.verbosetech.findout.Othes.CustomGridAdapter;
 import com.project.verbosetech.findout.Othes.CustomPagerAdapter;
 import com.project.verbosetech.findout.Othes.Pager;
-import com.project.verbosetech.findout.Othes.PrefManager;
 import com.project.verbosetech.findout.R;
 
 import java.util.ArrayList;
@@ -51,7 +50,6 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     ArrayList<Integer> image;
     ArrayList<String> number;
     List<GridCardModel> gridCardModelList;
-    PrefManager prefManager;
 
 
     HomeFragment.OnHeadlineSelectedListener mCallback;
@@ -79,7 +77,6 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_view_pager, container, false);
-        prefManager = new PrefManager(getContext());
         mViewPager = (Pager) view.findViewById(R.id.viewpager);
         pager_indicator = (LinearLayout) view.findViewById(R.id.viewPagerCountDots);
         mAdapter = new CustomPagerAdapter(getContext(), mResources, tag, buttons);

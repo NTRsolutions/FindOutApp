@@ -22,7 +22,6 @@ import com.project.verbosetech.findout.Models.GridCardModel;
 import com.project.verbosetech.findout.Models.Places;
 import com.project.verbosetech.findout.Othes.Constants;
 import com.project.verbosetech.findout.Othes.PlacesRecycleGrid;
-import com.project.verbosetech.findout.Othes.PrefManager;
 import com.project.verbosetech.findout.R;
 
 import java.util.ArrayList;
