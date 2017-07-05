@@ -27,6 +27,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        //setting click listeners
         findViewById(R.id.login_button).setOnClickListener(this);
         findViewById(R.id.signUp).setOnClickListener(this);
 
@@ -36,10 +38,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_button:
+                //login button click
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
                 break;
             case R.id.signUp:
+                //signup button click
                 startActivity(new Intent(this, SignUpActivity.class));
                 finish();
                 break;

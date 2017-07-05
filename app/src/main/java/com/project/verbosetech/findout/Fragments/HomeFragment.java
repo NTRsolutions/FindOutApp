@@ -104,8 +104,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     }
 
     private void setPageViewIndicator() {
-
-        Log.d("###setPageViewIndicator", " : called");
+        //setup image slider dots
         dotsCount = mAdapter.getCount();
         dots = new ImageView[dotsCount];
 
@@ -146,8 +145,6 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     @Override
     public void onPageSelected(int position) {
-
-        Log.d("###onPageSelected, pos ", String.valueOf(position));
         for (int i = 0; i < dotsCount; i++) {
             dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
         }

@@ -40,7 +40,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by this pc on 08-06-17.
  */
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,HomeFragment.OnHeadlineSelectedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, HomeFragment.OnHeadlineSelectedListener, View.OnClickListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     // and profile image
     private static final String urlNavHeaderBg = "http://api.androidhive.info/images/nav-menu-header-bg.jpg";
     private static final String urlProfileImg = "https://lh3.googleusercontent.com/eCtE_G34M9ygdkmOpYvCag1vBARCmZwnVS6rS5t4JLzJ6QgQSBquM0nuTsCpLhYbKljoyS-txg";
-    String image_address="http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
+    String image_address = "http://healthyrise.com/wp-content/uploads/2016/06/Restaurant-Food-11.jpg";
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
-    Button edit,save;
+    Button edit, save;
 
 
     @Override
@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        edit=(Button) toolbar.findViewById(R.id.edit);
-        save=(Button) toolbar.findViewById(R.id.save);
+        edit = (Button) toolbar.findViewById(R.id.edit);
+        save = (Button) toolbar.findViewById(R.id.save);
         edit.setOnClickListener(this);
         save.setOnClickListener(this);
 
@@ -207,23 +207,19 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private void setToolbarTitle() {
 
-        if(navItemIndex==0) {
+        if (navItemIndex == 0) {
             getSupportActionBar().setIcon(R.drawable.ic_location_on_white_24dp);
             getSupportActionBar().setTitle(" Delhi");
             edit.setVisibility(View.GONE);
             save.setVisibility(View.GONE);
 
-        }
-
-        else if(navItemIndex==2) {
+        } else if (navItemIndex == 2) {
             getSupportActionBar().setTitle(activityTitles[navItemIndex]);
             getSupportActionBar().setIcon(
                     new ColorDrawable(getResources().getColor(android.R.color.transparent)));
             edit.setVisibility(View.VISIBLE);
             save.setVisibility(View.GONE);
-        }
-
-        else {
+        } else {
             getSupportActionBar().setTitle(activityTitles[navItemIndex]);
             getSupportActionBar().setIcon(
                     new ColorDrawable(getResources().getColor(android.R.color.transparent)));
@@ -292,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
                     case R.id.nav_sign_out:
 
-                        startActivity(new Intent(MainActivity.this,SignInActivity.class));
+                        startActivity(new Intent(MainActivity.this, SignInActivity.class));
                         finish();
                         break;
 
@@ -363,12 +359,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
-        if(navItemIndex!=2)
-        {getMenuInflater().inflate(R.menu.menu_main, menu);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        searchView.setOnQueryTextListener(this);
-        return true;}
-        else
+        if (navItemIndex != 2) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+            searchView.setOnQueryTextListener(this);
+            return true;
+        } else
             return super.onCreateOptionsMenu(menu);
     }
 
@@ -389,28 +385,28 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextChange(String newText) {
 
-       return false;
+        return false;
     }
 
 
     @Override
     public void onHomeSelected(CustomGridAdapter a) {
-        adapter=a;
+        adapter = a;
     }
 
     @Override
     public void onClick(View view) {
 
-        switch(view.getId()){
+        switch (view.getId()) {
 
             case R.id.edit:
-                            edit.setVisibility(View.GONE);
-                            save.setVisibility(View.VISIBLE);
-                            break;
+                edit.setVisibility(View.GONE);
+                save.setVisibility(View.VISIBLE);
+                break;
             case R.id.save:
-                            edit.setVisibility(View.VISIBLE);
-                            save.setVisibility(View.GONE);
-                            break;
+                edit.setVisibility(View.VISIBLE);
+                save.setVisibility(View.GONE);
+                break;
 
         }
     }
